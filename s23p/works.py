@@ -8,13 +8,10 @@ Date: 2023-04-25
 """
 
 import base64
+import time
 import matplotlib.pyplot as plt
 from IPython.core.pylabtools import print_figure
-import time
 import requests
-import bibtexparser
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.bibdatabase import BibDatabase
 
 
 class Works:
@@ -129,6 +126,9 @@ class Works:
 
     @property
     def ris(self):
+        """
+        ris def
+        """
         fields = []
         if self.data["type"] == "journal-article":
             fields += ["TY  - JOUR"]
@@ -162,6 +162,9 @@ class Works:
         return HTML(uri)
 
     def related_works(self):
+        """
+        get r_w.
+        """
         rworks = []
         for rw_url in self.data["related_works"]:
             related_w = Works(rw_url)
@@ -170,6 +173,9 @@ class Works:
         return rworks
 
     def references(self):
+        """
+        get ref.
+        """
         refworks = []
         for refw_url in self.data["referenced_works"]:
             refw = Works(refw_url)
@@ -178,6 +184,9 @@ class Works:
         return refworks
 
     def citing_works(self):
+        """
+        get citing.
+        """
         cworks = self.data["cited_by_api_url"]
         data = requests.get(cworks).json()
         url = [result["id"] for result in data["results"]]
@@ -191,6 +200,9 @@ class Works:
         return cwork
 
     def bib(self):
+        """
+        get bib.
+        """
         data_b = BibDatabase()
         powera = self.data["authorships"]
         xinz = []
