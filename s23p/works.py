@@ -17,7 +17,6 @@ from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 
 
-
 class Works:
     """
     OpenAlex Works.
@@ -39,8 +38,7 @@ class Works:
         return "str"
 
     def __repr__(self):
-        _authors = [au["author"]["display_name"]
-                    for au in self.data["authorships"]]
+        _authors = [au["author"]["display_name"] for au in self.data["authorships"]]
         if len(_authors) == 1:
             authors = _authors[0]
         elif len(_authors) > 1:
@@ -120,8 +118,10 @@ class Works:
         citefig = f"![img](data:image/png;base64,{b64})"
 
         sample = (
-            f'{authors}, *{title}*, **{journal}**, {self.data["biblio"]["volume"]}{issue}{pages}, ({year}), '
-            f'{self.data["doi"]}. cited by: {citedby}. [Open Alex]({open_a})')
+            f'{authors}, *{title}*, **{journal}**, {self.data["biblio"]["volume"]}'
+            f'{issue}{pages}, ({year}), {self.data["doi"]}. cited by: {citedby}. '
+            f'[Open Alex]({open_a})'
+        )
 
         sample += "<br>" + citefig
         return sample
@@ -156,10 +156,9 @@ class Works:
         ris = "\n".join(fields)
         ris64 = base64.b64encode(ris.encode("utf-8")).decode("utf8")
         uri = (
-            f'<pre>{ris}<pre><br>'
-            f'<a href="data:text/plain;base64,{ris64}" download="ris">Download RIS</a>')
-
-        
+            f"<pre>{ris}<pre><br>"
+            f'<a href="data:text/plain;base64,{ris64}" download="ris">Download RIS</a>'
+        )
 
         return HTML(uri)
 
