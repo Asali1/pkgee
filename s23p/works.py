@@ -9,9 +9,12 @@ Date: 2023-04-25
 
 import base64
 import time
+import requests
 import matplotlib.pyplot as plt
 from IPython.core.pylabtools import print_figure
-import requests
+from bibtexparser.bwriter import BibTexWriter
+from bibtexparser.bibdatabase import BibDatabase
+
 
 
 class Works:
