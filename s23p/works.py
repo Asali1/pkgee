@@ -87,7 +87,6 @@ class Works:
         title = self.data["title"]
 
         journal = f"[{self.data['host_venue']['display_name']}]({self.data['host_venue']['id']})"
-        volume = self.data["biblio"]["volume"]
 
         issue = self.data["biblio"]["issue"]
         if issue is None:
@@ -121,7 +120,7 @@ class Works:
         citefig = f"![img](data:image/png;base64,{b64})"
 
         sample = (
-            f'{authors}, *{title}*, **{journal}**, {volume}{issue}{pages}, ({year}), '
+            f'{authors}, *{title}*, **{journal}**, {self.data["biblio"]["volume"]}{issue}{pages}, ({year}), '
             f'{self.data["doi"]}. cited by: {citedby}. [Open Alex]({open_a})')
 
         sample += "<br>" + citefig
