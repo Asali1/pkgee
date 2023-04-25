@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run: |
+    - name: Install pkg
+      run: |
+        # pip install -r requirements.txt
+        pip install bibtexparser
         pip install matplotlib requests IPython pytest
     - name: Run tests
       run: |
