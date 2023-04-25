@@ -211,8 +211,7 @@ class Works:
         powera = self.data["authorships"]
         xinz = []
         for author in powera:
-            perx = author["author"]["display_name"]
-            xinz += [perx]
+            xinz += [author["author"]["display_name"]]
         xinz_n = xinz[-1].split()[-1]
         data_b.entries = [
             {
