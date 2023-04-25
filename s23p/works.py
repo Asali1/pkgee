@@ -28,6 +28,7 @@ class Works:
     Methods:
         Openalex works.
     """
+
     def __init__(self, oaid):
         self.oaid = oaid
         self.req = requests.get(f"https://api.openalex.org/works/{oaid}")
@@ -37,7 +38,8 @@ class Works:
         return "str"
 
     def __repr__(self):
-        _authors = [au["author"]["display_name"] for au in self.data["authorships"]]
+        _authors = [au["author"]["display_name"]
+                    for au in self.data["authorships"]]
         if len(_authors) == 1:
             authors = _authors[0]
         elif len(_authors) > 1:
@@ -108,7 +110,7 @@ class Works:
         years = [e["year"] for e in self.data["counts_by_year"]]
         counts = [e["cited_by_count"] for e in self.data["counts_by_year"]]
 
-        fig, plotss= plt.subplots()
+        fig, plotss = plt.subplots()
         plotss.bar(years, counts)
         plotss.set_xlabel("year")
         plotss.set_ylabel("citation count")
@@ -118,9 +120,9 @@ class Works:
         b64 = base64.b64encode(data).decode("utf8")
         citefig = f"![img](data:image/png;base64,{b64})"
 
-        sample = (f'{authors}, *{title}*, **{journal}**, {volume}{issue}{pages}, ({year}), '
-             f'{self.data["doi"]}. cited by: {citedby}. [Open Alex]({open_a})')
-
+        sample = (
+            f'{authors}, *{title}*, **{journal}**, {volume}{issue}{pages}, ({year}), '
+            f'{self.data["doi"]}. cited by: {citedby}. [Open Alex]({open_a})')
 
         sample += "<br>" + citefig
         return sample
@@ -151,8 +153,9 @@ class Works:
 
         ris = "\n".join(fields)
         ris64 = base64.b64encode(ris.encode("utf-8")).decode("utf8")
-        uri = (f'<pre>{ris}<pre><br>'
-       f'<a href="data:text/plain;base64,{ris64}" download="ris">Download RIS</a>')
+        uri = (
+            f'<pre>{ris}<pre><br>'
+            f'<a href="data:text/plain;base64,{ris64}" download="ris">Download RIS</a>')
 
         from IPython.display import HTML
 
