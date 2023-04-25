@@ -50,7 +50,6 @@ class Works:
         title = self.data["title"]
 
         # journal = self.data["host_venue"]["display_name"]
-        volume = self.data["biblio"]["volume"]
 
         issue = self.data["biblio"]["issue"]
         if issue is None:
@@ -69,7 +68,7 @@ class Works:
 
         open_a = self.data["id"]
         sample = (
-            f'{authors}, {title}, {volume}{issue}{pages}, '
+            f'{authors}, {title}, {self.data["biblio"]["volume"]}{issue}{pages}, '
             f'({year}), {self.data["doi"]}. cited by: {citedby}. {open_a}'
         )
 
