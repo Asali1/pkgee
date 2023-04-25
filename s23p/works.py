@@ -191,25 +191,25 @@ class Works:
         return cwork
 
     def bib(self):
-        db = BibDatabase()
-        p = self.data["authorships"]
-        x = []
-        for author in p:
-            px = author["author"]["display_name"]
-            x += [px]
-        xn = x[-1].split()[-1]
-        db.entries = [
+        data_b = BibDatabase()
+        powera = self.data["authorships"]
+        xinz = []
+        for author in powera:
+            perx = author["author"]["display_name"]
+            xinz += [perx]
+        xinz_n = xinz[-1].split()[-1]
+        data_b.entries = [
             {
                 "journal": self.data["host_venue"]["display_name"],
                 "pages": f'{self.data["biblio"]["first_page"]}-{self.data["biblio"]["last_page"]}',
                 "title": self.data["title"],
-                "ID": xn + str(self.data["publication_year"]),
+                "ID": xinz_n + str(self.data["publication_year"]),
                 "year": str(self.data["publication_year"]),
                 "volume": self.data["biblio"]["volume"],
-                "author": str(x),
+                "author": str(xinz),
                 "ENTRYTYPE": "article",
             }
         ]
 
         writer = BibTexWriter()
-        return print(writer.write(db))
+        return print(writer.write(data_b))
