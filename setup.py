@@ -11,6 +11,6 @@ setup(
     maintainer_email="asali@andrew.cmu.edu",
     license="MIT",
     packages=["s23p"],
-    scripts=[],
+    entry_points={'console_scripts': ['pkgee = s23p.main:main']},
     long_description="""Project for openalex""",
 )
