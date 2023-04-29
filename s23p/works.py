@@ -12,6 +12,7 @@ import time
 import requests
 import matplotlib.pyplot as plt
 from IPython.core.pylabtools import print_figure
+from IPython.display import HTML
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 
