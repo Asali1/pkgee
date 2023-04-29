@@ -1,16 +1,33 @@
-from s23p import Works
+"""
+commandline utility
+"""
 import argparse
+from s23p import Works
 
-parser = argparse.ArgumentParser(description='Get bibliography or RIS format from a URL')
-parser.add_argument('url', type=str, help='URL of the article')
-parser.add_argument('-b', '--bib', action='store_true', help='output in bibliography format')
-parser.add_argument('-r', '--ris', action='store_true', help='output in RIS format')
-args = parser.parse_args()
 
-works = Works(args.url)
-if args.bib:
-    print(works.bib)
-elif args.ris:
-    print(works.ris)
-else:
-    print('Please specify -b or -r for bibliography or RIS format, respectively.')
+def main():
+    """
+    main
+    """
+
+    def get_output(url, output_format):
+        w_doi = Works(url)
+        if output_format == "bib":
+            return w_doi.bib()
+        if output_format == "ris":
+            return w_doi.ris
+        return None
+
+    parser = argparse.ArgumentParser(description="Get bib or ris for DOI")
+    parser.add_argument("url", type=str, help="DOI")
+    parser.add_argument(
+        "-f",
+        "--format",
+        type=str,
+        choices=["bib", "ris"],
+        default="bib",
+        help="format (default: bib)",
+    )
+    args = parser.parse_args()
+    output = get_output(args.url, args.format)
+    return output

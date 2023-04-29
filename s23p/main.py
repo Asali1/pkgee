@@ -9,14 +9,15 @@ def main():
     """
     main
     """
+
     def get_output(url, output_format):
         w_doi = Works(url)
         if output_format == "bib":
             return w_doi.bib()
-        elif output_format == "ris":
+        if output_format == "ris":
             return w_doi.ris
-        
-    
+        return None
+
     parser = argparse.ArgumentParser(description="Get bib or ris for DOI")
     parser.add_argument("url", type=str, help="DOI")
     parser.add_argument(
