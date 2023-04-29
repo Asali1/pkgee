@@ -12,7 +12,6 @@ import time
 import requests
 import matplotlib.pyplot as plt
 from IPython.core.pylabtools import print_figure
-from IPython.display import HTML
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 
@@ -144,13 +143,7 @@ class Works:
         fields += ["ER  -"]
 
         ris = "\n".join(fields)
-        ris64 = base64.b64encode(ris.encode("utf-8")).decode("utf8")
-        uri = (
-            f"<pre>{ris}<pre><br>"
-            f'<a href="data:text/plain;base64,{ris64}" download="ris">Download RIS</a>'
-        )
-
-        return HTML(uri)
+        return ris
 
     def related_works(self):
         """
